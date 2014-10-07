@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: docker-registry
+# Cookbook Name:: docker-docker-registry
 # Recipe:: default
 #
 # Copyright (C) 2014 Daniel Ku

@@ -1,4 +1,4 @@
-# docker-registry-cookbook
+# docker-docker-registry-cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -16,7 +16,7 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['docker-registry']['bacon']</tt></td>
+    <td><tt>['docker-docker-registry']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -25,14 +25,14 @@ TODO: List your supported platforms.
 
 ## Usage
 
-### docker-registry::default
+### docker-docker-registry::default
 
-Include `docker-registry` in your node's `run_list`:
+Include `docker-docker-registry` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[docker-registry::default]"
+    "recipe[docker-docker-registry::default]"
   ]
 }
 ```
