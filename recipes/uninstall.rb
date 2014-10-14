@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: docker-docker-registry
-# Recipe:: install
+# Recipe:: uninstall
 #
 # Copyright (C) 2014 Daniel Ku
 #
@@ -25,10 +25,9 @@
 #
 
 docker_container 'registry' do
-  image 'registry:latest'
-  container_name 'registry'
-  detach true
-  port '5000:5000'
-  cmd_timeout 300
-  action :run
+  action :stop
+end
+
+docker_container 'registry' do
+  action :remove
 end

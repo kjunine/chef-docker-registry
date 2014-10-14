@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: docker-docker-registry
-# Recipe:: default
+# Recipe:: install-s3
 #
 # Copyright (C) 2014 Daniel Ku
 #
@@ -24,10 +24,24 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-docker_container 'registry' do
-  action :stop
-end
+registry = Chef::EncryptedDataBagItem.load "secrets", "docker-registry"
+bucket = registry['aws']['bucket']
+key = registry['aws']['key']
+secret = registry['aws']['secret']
 
 docker_container 'registry' do
-  action :remove
+  image 'registry:latest'
+  container_name 'registry'
+  detach true
+  port '5000:5000'
+  env [
+    "SETTINGS_FLAVOR=s3",
+    "AWS_BUCKET=#{bucket}",
+    "STORAGE_PATH=/registry",
+    "AWS_KEY=#{key}",
+    "AWS_SECRET=#{secret}",
+    "SEARCH_BACKEND=sqlalchemy"
+  ]
+  cmd_timeout 300
+  action :run
 end
